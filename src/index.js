@@ -52,7 +52,7 @@ async function onSearchSubmit(event) {
       Notify.info(`Hooray! We found ${totalHits} images.`);
     }
   } catch (error) {
-    Notify.failure(error.message, 'something went wrong try more');
+    Notify.failure(error.message, 'Something went wrong try more!');
 
     clearPage();
   }
