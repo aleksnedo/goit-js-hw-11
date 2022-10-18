@@ -28,8 +28,8 @@ async function onSearchSubmit(event) {
     Notify.failure('Please, enter data to search!');
     return;
   }
-  pixabay.searchQuery = query;
 
+  pixabay.searchQuery = query;
   clearPage();
 
   try {
