@@ -1,17 +1,17 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { PixabayApi } from './js/fetchImages';
-import { refs } from './js/refs';
-import { renderMarkup } from './js/renderMarkup';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import { PixabayApi } from './js/fetchImages';
+import { renderMarkup } from './js/renderMarkup';
+import { refs } from './js/refs';
+
+const pixabay = new PixabayApi();
 
 let lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-const pixabay = new PixabayApi();
 
 refs.formRef.addEventListener('submit', onSearchSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
