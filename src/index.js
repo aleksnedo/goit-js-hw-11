@@ -7,7 +7,7 @@ import { refs } from './js/refs';
 
 const pixabay = new PixabayApi();
 
-let lightbox = new SimpleLightbox('.photo-card a', {
+let lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
   captionsData: 'alt',
   captionDelay: 250,
