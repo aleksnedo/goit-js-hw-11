@@ -7,16 +7,13 @@ import { refs } from './js/refs';
 
 const pixabay = new PixabayApi();
 
-let lightbox = new SimpleLightbox('.gallery a', {
+let lightbox = new SimpleLightbox('.photo-card a', {
   captions: true,
   captionsData: 'alt',
   captionDelay: 250,
 });
 
-refs.formRef.addEventListener('submit', onSearchSubmit);
-refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
-
-async function onSearchSubmit(event) {
+const onSearchSubmit = async event => {
   event.preventDefault();
 
   const {
@@ -36,9 +33,7 @@ async function onSearchSubmit(event) {
     const { hits, totalHits } = await pixabay.getImages();
     const markup = renderMarkup(hits);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup);
-    // const target = document.querySelector('.photo-card:last-child');
-    // io.observe(target);
-
+    lightbox.refresh();
     pixabay.calculateTotalPages(totalHits);
 
     if (pixabay.isShowLoadMore) {
@@ -56,9 +51,11 @@ async function onSearchSubmit(event) {
 
     clearPage();
   }
-}
+};
 
-async function onLoadMoreBtnClick() {
+refs.formRef.addEventListener('submit', onSearchSubmit);
+
+const onLoadMoreBtnClick = async () => {
   pixabay.incrementPage();
 
   if (!pixabay.isShowLoadMore) {
@@ -75,7 +72,9 @@ async function onLoadMoreBtnClick() {
     Notify.failure('Something went wrong! Please retry');
     clearPage();
   }
-}
+};
+
+refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
 function clearPage() {
   pixabay.resetPage();
