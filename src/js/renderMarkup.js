@@ -10,8 +10,8 @@ export function renderMarkup(photos) {
         comments,
         downloads,
       }) => `<div class="photo-card">
-    <a href="${largeImageURL}">        
-    <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+    <a class="photo-link" href="${largeImageURL}">        
+    <img class="photo-image" src="${webformatURL}" alt="${tags}" loading="lazy" />
     </a>
     <div class="info">
       <p class="info-item">
